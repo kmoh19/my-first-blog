@@ -14,8 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url,include
+import django.contrib.auth.views
 from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),url(r'',include('blog.urls')),
+url(r'^accounts/login/$', django.contrib.auth.views.login, name='login'),#log in redirect in settings
+url(r'^accounts/logout/$', django.contrib.auth.views.logout, name='logout', kwargs={'next_page': '/'}),#log out redirect explicit
 ]
